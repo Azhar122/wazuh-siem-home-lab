@@ -1,36 +1,50 @@
-# Lab Architecture
+# Windows Agent Deployment
 
-The lab uses one Ubuntu Server VM as a central Wazuh Server and one Windows 11 laptop as the monitored endpoint.
+## Overview 
+
+A Wazuh 4.12.0 agent was installed on the windows 11 laptop and registered with teh ubuntu Wazuh manager.
+
+The agent version was kept equal to the manager version because Wazuh agent cannot be newer than its manager.
+
+## Configuration
+
+The manager address was configured in:
 
 ```text
-Windows 11 Laptop
-└── Wazuh Agent
-        │
-        │ TCP 1514
-        ▼
-Ubuntu Server VM
-├── Wazuh Manager
-├── Filebeat
-├── Wazuh Indexer
-└── Wazuh Dashboard
+C:\Program Files (x86)\ossec-agent\ossec.conf
 ```
 
-## Component Roles
+Example:
 
-Wazuh Agent - Collects Windows logs, system info and FIM events
-Wazuh Manager - Recieves and analyses endpoint events
-Filebeat - Forwards generated alerts to the indexer
-Wazuh Indexer - Stores and searches security alerts
-Wazuh Dashboard - The web interface for monitoring and investigating
+```xml
+<client>
+  <server>
+    <address>WAZUH-MANAGER-IP</address>
+  </server>
+</client>
+```
 
-## Network Design
+The agent registration key was imported using Wazuh Agent Manager.
 
-VirtualBox bridged networking placees the Ubuntu VM and the Windows laptop on the same local network. 
+## Verification
 
-Ports:
-- Port 22 - SSH admin
-- Port 443 - Wazuh dashboard
-- 1514 - Agent Communication
-- 1515 - Agent enrolment
-- 9200 - Wazuh indexer
-- 55000 - Wazuh API
+The Windows service was checked using Administrator PowerShell:
+
+```powershell
+Get-Service WazuhSvc
+```
+
+The agent connection was verified through:
+
+```powershell
+Get-Content "C:\Program Files (x86)\ossec-agent\ossec.log" -Tail 30
+```
+
+A successful connection included:
+
+```text
+Connected to the server
+Agent is now online
+```
+
+The manager also displayed the endpoint as `Active`.

@@ -1,0 +1,7 @@
+<!-- Example Windows Wazuh Agent FIM configuration -->
+
+<syscheck>
+  <directories realtime="yes">
+    C:\Users\USERNAME\Path\To\FIM-Lab
+  </directories>
+</syscheck>
