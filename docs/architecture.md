@@ -17,11 +17,11 @@ Ubuntu Server VM
 
 ## Component Roles
 
-Wazuh Agent - Collects Windows logs, system info and FIM events
-Wazuh Manager - Recieves and analyses endpoint events
-Filebeat - Forwards generated alerts to the indexer
-Wazuh Indexer - Stores and searches security alerts
-Wazuh Dashboard - The web interface for monitoring and investigating
+- Wazuh Agent - Collects Windows logs, system info and FIM events
+- Wazuh Manager - Recieves and analyses endpoint events
+- Filebeat - Forwards generated alerts to the indexer
+- Wazuh Indexer - Stores and searches security alerts
+- Wazuh Dashboard - The web interface for monitoring and investigating
 
 ## Network Design
 
