@@ -79,6 +79,24 @@ Configured real-time monitoring for a controlled Windows folder.
 | File modified | Modified  |           550 |
 | File deleted  | Deleted   |           553 |
 
+### Additional Security Exercises
+
+- **Sysmon Integration**
+  - Collected Sysmon Windows Event Channel telemetry through Wazuh.
+  - Investigated a MITRE ATT&CK T1055 process-access alert.
+  - Performed process signature, path, frequency, and context analysis.
+  - Classified the activity as a benign positive.
+
+- **Vulnerability Management**
+  - Identified 687 vulnerability findings on the Windows endpoint.
+  - Updated Windows and rescanned the system.
+  - Reduced findings to 248, a reduction of approximately 64%.
+
+- **Security Configuration Assessment**
+  - Reviewed CIS-based Windows hardening checks.
+  - Remediated password history, minimum password age, and minimum password length policies.
+  - Verified changes locally and through Wazuh SCA.
+
 
 Troubleshooting Experience
 
@@ -121,6 +139,9 @@ wazuh-siem-homelab/
 │   ├── agent-deployment.md
 │   ├── fim-lab.md
 │   ├── failed-login-detection.md
+│   ├── sysmon-wazuh.md
+│   ├── vulnerability-remediation.md
+│   ├── security-configuration-assessment.md
 │   └── troubleshooting.md
 └── images/
 
